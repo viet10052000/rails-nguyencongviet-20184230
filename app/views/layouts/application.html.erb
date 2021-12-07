@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Thefirstrails</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,20 +10,19 @@
 
   <body>
       <header>
-        <%= link_to "ホーム", root_url %></br>
+        <%= link_to "ホーム", root_url %>
         <% if user_signed_in? %>
-            Signed in as <%= current_user.email %>.
+        <br />こんにちは、<%= link_to current_user.name, users_show_path %><br />
         <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-        こんにちは、<%= current_user.email %><br />
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <br />
       <% else %>
         <%= link_to "サインイン", new_user_session_path %>
         <%= link_to "ユーザ登録", new_user_registration_path %>
       <% end %>
+      <hr />
       </header>
-      <main>
+     <main>
         <%= yield %>
-      </main>
+     </main>
+
   </body>
 </html>
